@@ -7,7 +7,13 @@ function SnapshotFirebase() {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-
+  // const arr1 = {
+  //   id: "1",
+  //   title: "sid",
+  // };
+  // console.log(arr);
+  // console.log(arr[title]);
+  // console.log(arr1.title);
   const ref = firebase.firestore().collection("schools");
 
   //REALTIME GET FUNCTION
@@ -17,6 +23,7 @@ function SnapshotFirebase() {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
+        // console.log(doc.title);
       });
       setSchools(items);
       setLoading(false);
@@ -30,13 +37,22 @@ function SnapshotFirebase() {
 
   // ADD FUNCTION
   function addSchool(newSchool) {
-    ref
-      //.doc() use if for some reason you want that firestore generates the id
-      .doc(newSchool.id)
-      .set(newSchool)
-      .catch((err) => {
-        console.error(err);
-      });
+    for (let i = 0; i <= schools.length; i++) {
+      if (title === schools[i].title) {
+        alert("Asdded"); 
+        break;
+      }
+      else{
+        ref
+        //.doc() use if for some reason you want that firestore generates the id
+        .doc(newSchool.id)
+        .set(newSchool)
+        .catch((err) => {
+          console.error(err);
+        });
+      }
+    }
+
   }
 
   //DELETE FUNCTION

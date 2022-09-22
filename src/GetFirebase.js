@@ -19,6 +19,8 @@ function GetFirebase() {
       setLoading(false);
     });
   }
+
+  
   useEffect(() => {
     getSchools2();
     // eslint-disable-next-line
@@ -95,13 +97,10 @@ function GetFirebase() {
         <div className="school" key={school.id}>
           <h2>{school.title}</h2>
           <p>{school.desc}</p>
+
           <div>
             <button onClick={() => deleteSchool(school)}>X</button>
-            <button
-              onClick={() =>
-                editSchool({ title: school.title, desc, id: school.id })
-              }
-            >
+            <button onClick={() => editSchool({ title: school.title, desc, id: school.id }) } >
               Edit
             </button>
           </div>
